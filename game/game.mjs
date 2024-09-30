@@ -4,7 +4,7 @@ import { ANSI } from "./ansi.mjs";
 import DICTIONARY from "./language.mjs";
 import showSplashScreen from "./splash.mjs";
 
-const GAME_BOARD_SIZE = 3;
+const GAME_BOARD_SIZE = 4;
 const PLAYER_1 = 1;
 const PLAYER_2 = -1;
 
@@ -127,7 +127,7 @@ function changeCurrentPlayer() {
 function evaluateGameState() {
     let sum = 0;
     let state = 0;
-
+{
     for (let row = 0; row < GAME_BOARD_SIZE; row++) {
 
         for (let col = 0; col < GAME_BOARD_SIZE; col++) {
@@ -139,7 +139,8 @@ function evaluateGameState() {
         }
         sum = 0;
     }
-
+}
+{
     for (let col = 0; col < GAME_BOARD_SIZE; col++) {
 
         for (let row = 0; row < GAME_BOARD_SIZE; row++) {
@@ -152,7 +153,8 @@ function evaluateGameState() {
 
         sum = 0;
     }
-    
+}
+{  
     for (let col = 0, row = 0; row, col < GAME_BOARD_SIZE; row++, col++) {
         sum += gameboard[row][col];
         }
@@ -161,24 +163,25 @@ function evaluateGameState() {
             state = sum;
         
 
-        sum = 0;
         }
-    
+        sum = 0;
+}
+{
     for (let row = 0, col = GAME_BOARD_SIZE - 1; row < GAME_BOARD_SIZE && col >= 0; row++, col--) {
         sum += gameboard[row][col];
         }
     
         if (Math.abs(sum) == GAME_BOARD_SIZE) {
                 state = sum;
-            
-    
-        sum = 0;
+        
         }
-
+        sum = 0;
+}
 
     let winner = state / GAME_BOARD_SIZE;
     return winner;
 }
+
 
 function updateGameBoardState(move) {
     const ROW_ID = 0;
