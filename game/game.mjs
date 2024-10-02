@@ -167,9 +167,9 @@ function evaluateGameState() {
     let sum = 0;
     let state = 0;
     
-{
+
    
-    for (let row = 0; row < GAME_BOARD_SIZE; row++) {
+    { for (let row = 0; row < GAME_BOARD_SIZE; row++) {
 
         for (let col = 0; col < GAME_BOARD_SIZE; col++) {
             sum += gameboard[row][col];
@@ -180,10 +180,10 @@ function evaluateGameState() {
         }
         sum = 0;
     }
-}
+    }
 
-{
-    for (let col = 0; col < GAME_BOARD_SIZE; col++) {
+
+    { for (let col = 0; col < GAME_BOARD_SIZE; col++) {
 
         for (let row = 0; row < GAME_BOARD_SIZE; row++) {
             sum += gameboard[row][col];
@@ -195,9 +195,9 @@ function evaluateGameState() {
 
         sum = 0;
     }
-}
-{  
-    for (let col = 0, row = 0; row, col < GAME_BOARD_SIZE; row++, col++) {
+    }
+ 
+    { for (let col = 0, row = 0; row, col < GAME_BOARD_SIZE; row++, col++) {
         sum += gameboard[row][col];
         }
 
@@ -206,9 +206,9 @@ function evaluateGameState() {
         
         }
         sum = 0;
-}
-{
-    for (let row = 0, col = GAME_BOARD_SIZE - 1; row < GAME_BOARD_SIZE && col >= 0; row++, col--) {
+    }
+
+    { for (let row = 0, col = GAME_BOARD_SIZE - 1; row < GAME_BOARD_SIZE && col >= 0; row++, col--) {
         sum += gameboard[row][col];
         }
     
@@ -217,7 +217,7 @@ function evaluateGameState() {
         
         }
         sum = 0;
-}
+    }
     let draw = true;
     for (let row = 0; row < GAME_BOARD_SIZE; row++) {
         for (let col = 0; col < GAME_BOARD_SIZE; col++) {
