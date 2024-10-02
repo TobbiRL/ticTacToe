@@ -127,7 +127,7 @@ async function playGame() {
         clearScreen();
         showGameBoardWithCurrentState();
         showHUD();
-        let move = await getGameMoveFromtCurrentPlayer();
+        let move = await getGameMoveFromCurrentPlayer();
         updateGameBoardState(move);
         outcome = evaluateGameState();
         changeCurrentPlayer();
@@ -149,10 +149,14 @@ async function askWantToPlayAgain() {
 
 function showGameSummary(outcome) {
     clearScreen();
-    let winningPlayer = (outcome > 0) ? 1 : 2;
-    print(language.WINNER + winningPlayer);
+    if (outcome == 0.5) {
+        print("It's a draw")
+    } else {
+        let winningPlayer = (outcome > 0) ? 1 : 2;
+        print(language.WINNER + winningPlayer); 
+    }
     showGameBoardWithCurrentState();
-    print(language.GAME_OVER);
+    print(language.GAME_OVER); 
 }
 
 function changeCurrentPlayer() {
@@ -214,6 +218,17 @@ function evaluateGameState() {
         }
         sum = 0;
 }
+    let draw = true;
+    for (let row = 0; row < GAME_BOARD_SIZE; row++) {
+        for (let col = 0; col < GAME_BOARD_SIZE; col++) {
+            if (gameboard[row][col] == 0)
+                draw = false;
+
+        } 
+    }
+    if (state == 0 && draw) {
+        return 0.5;
+    }
 
     let winner = state / GAME_BOARD_SIZE;
     return winner;
@@ -227,7 +242,7 @@ function updateGameBoardState(move) {
     gameboard[move[ROW_ID]][move[COLUMN_ID]] = currentPlayer;
 }
 
-async function getGameMoveFromtCurrentPlayer() {
+async function getGameMoveFromCurrentPlayer() {
     let position = null;
     do {
         let rawInput = await askQuestion(language.PLACE_MARK);
