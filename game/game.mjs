@@ -105,7 +105,7 @@ async function chooseYourLanguage() {
         print(language.NORWEGIAN);
 
         // Wait for the choice.
-        chosenLanguage = await askQuestion("");
+        chosenLanguage = await askQuestion(CHAR.EMPTY);
 
         // Check to see if the choice is valid.
         if ([LANGUAGE_CHOICES.ENGLISH, LANGUAGE_CHOICES.NORWEGIAN].includes(Number(chosenLanguage))) {
@@ -236,7 +236,7 @@ async function getGameMoveFromtCurrentPlayer() {
     let position = null;
     do {
         let rawInput = await askQuestion(language.PLACE_MARK);
-        position = rawInput.split(" ");
+        position = rawInput.split(CHAR.EMPTY_SPACE);
     } while (isValidPositionOnBoard(position) == false)
 
     return position
@@ -276,16 +276,16 @@ function showHUD() {
 
 function showGameBoardWithCurrentState() {
     for (let currentRow = 0; currentRow < GAME_BOARD_SIZE; currentRow++) {
-        let rowOutput = "";
+        let rowOutput = CHAR.EMPTY;
         for (let currentCol = 0; currentCol < GAME_BOARD_SIZE; currentCol++) {
             let cell = gameboard[currentRow][currentCol];
             if (cell == 0) {
-                rowOutput += "_ ";
+                rowOutput += CHAR.LINE;
             }
             else if (cell > 0) {
-                rowOutput += "X ";
+                rowOutput += CHAR.X;
             } else {
-                rowOutput += "O ";
+                rowOutput += CHAR.O;
             }
         }
 

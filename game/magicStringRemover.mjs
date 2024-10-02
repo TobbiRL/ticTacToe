@@ -5,6 +5,6 @@ const CHAR = {
     X: "X ",
     LINE: "_ ",
 
-}
+};
 
 export default CHAR;

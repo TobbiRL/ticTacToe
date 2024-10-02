@@ -14,7 +14,7 @@ const DICTIONARY = {
         PLACE_MARK: "Place your mark at: ",
         PLAYER: "Player ",
         YOUR_TURN: " it is your turn",
-        WINNER: "Winner is player",
+        WINNER: "Winner is player ",
         GAME_OVER: "GAME OVER",
         CONFIRM: "y",
     },
@@ -32,7 +32,7 @@ const DICTIONARY = {
         PLACE_MARK: "Plasser ditt symbol: ",
         PLAYER: "Spiller ",
         YOUR_TURN: " det er din tur",
-        WINNER: "Vinneren er spiller",
+        WINNER: "Vinneren er spiller ",
         GAME_OVER: "SLUTT",
         CONFIRM: "j",
     }
