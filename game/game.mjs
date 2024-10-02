@@ -14,6 +14,11 @@ const MENU_CHOICES = {
     MENU_CHOICE_SHOW_SETTINGS: 2,
     MENU_CHOICE_EXIT_GAME: 3
 };
+const LANGUAGE_CHOICES = {
+    ENGLISH: 1,
+    NORWEGIAN: 2,
+};
+
 
 const NO_CHOICE = -1;
 
@@ -40,7 +45,7 @@ async function start() {
         if (chosenAction == MENU_CHOICES.MENU_CHOICE_START_GAME) {
             await runGame();
         } else if (chosenAction == MENU_CHOICES.MENU_CHOICE_SHOW_SETTINGS) {
-            ///TODO: Needs implementing
+            await chooseYourLanguage();
         } else if (chosenAction == MENU_CHOICES.MENU_CHOICE_EXIT_GAME) {
             clearScreen();
             process.exit();
@@ -77,13 +82,44 @@ async function showMenu() {
         choice = await askQuestion("");
 
         // Check to see if the choice is valid.
-        if ([MENU_CHOICES.MENU_CHOICE_START_GAME, MENU_CHOICES.MENU_CHOICE_SHOW_SETTINGS, MENU_CHOICES.MENU_CHOICE_EXIT_GAME].includes(Number(choice))) {
-            validChoice = true;
+     if ([MENU_CHOICES.MENU_CHOICE_START_GAME, MENU_CHOICES.MENU_CHOICE_SHOW_SETTINGS, MENU_CHOICES.MENU_CHOICE_EXIT_GAME].includes(Number(choice))) {
+                validChoice = true;
+            }
         }
-    }
+    
 
     return choice;
 }
+
+async function chooseYourLanguage() {
+
+    let chosenLanguage = -1
+    let validChoice = false;
+
+    while (!validChoice) {
+       
+        clearScreen();
+        print(language.PREFERED_LANGUAGE);
+        print(language.ENGLISH);
+        print(language.NORWEGIAN);
+
+        // Wait for the choice.
+        chosenLanguage = await askQuestion("");
+
+        // Check to see if the choice is valid.
+        if ([LANGUAGE_CHOICES.ENGLISH, LANGUAGE_CHOICES.NORWEGIAN].includes(Number(chosenLanguage))) {
+            validChoice = true;
+        }
+    }
+    if (chosenLanguage == LANGUAGE_CHOICES.ENGLISH) {
+        language = DICTIONARY.en
+    }
+    else if (chosenLanguage == LANGUAGE_CHOICES.NORWEGIAN) {
+        language = DICTIONARY.no
+    }
+}
+
+
 
 async function playGame() {
     // Play game..
