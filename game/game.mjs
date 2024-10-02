@@ -4,7 +4,7 @@ import { ANSI } from "./ansi.mjs";
 import DICTIONARY from "./language.mjs";
 import showSplashScreen from "./splash.mjs";
 
-const GAME_BOARD_SIZE = 4;
+const GAME_BOARD_SIZE = 3;
 const PLAYER_1 = 1;
 const PLAYER_2 = -1;
 
@@ -68,10 +68,10 @@ async function showMenu() {
     while (!validChoice) {
         // Display our menu to the player.
         clearScreen();
-        print(ANSI.COLOR.YELLOW + "MENU" + ANSI.RESET);
-        print("1. Play Game");
-        print("2. Settings");
-        print("3. Exit Game");
+        print(ANSI.COLOR.YELLOW + language.MENU + ANSI.RESET);
+        print(language.PLAY_GAME);
+        print(language.SETTINGS);
+        print(language.EXIT_GAME);
 
         // Wait for the choice.
         choice = await askQuestion("");
@@ -115,19 +115,22 @@ async function askWantToPlayAgain() {
 function showGameSummary(outcome) {
     clearScreen();
     let winningPlayer = (outcome > 0) ? 1 : 2;
-    print("Winner is player " + winningPlayer);
+    print(language.WINNER + winningPlayer);
     showGameBoardWithCurrentState();
-    print("GAME OVER");
+    print(language.GAME_OVER);
 }
 
 function changeCurrentPlayer() {
     currentPlayer *= -1;
 }
 
+
 function evaluateGameState() {
     let sum = 0;
     let state = 0;
+    
 {
+   
     for (let row = 0; row < GAME_BOARD_SIZE; row++) {
 
         for (let col = 0; col < GAME_BOARD_SIZE; col++) {
@@ -140,6 +143,7 @@ function evaluateGameState() {
         sum = 0;
     }
 }
+
 {
     for (let col = 0; col < GAME_BOARD_SIZE; col++) {
 
@@ -162,7 +166,6 @@ function evaluateGameState() {
         if (Math.abs(sum) == GAME_BOARD_SIZE) {
             state = sum;
         
-
         }
         sum = 0;
 }
@@ -180,7 +183,10 @@ function evaluateGameState() {
 
     let winner = state / GAME_BOARD_SIZE;
     return winner;
-}
+   
+     
+} 
+
 
 
 function updateGameBoardState(move) {
@@ -192,7 +198,7 @@ function updateGameBoardState(move) {
 async function getGameMoveFromtCurrentPlayer() {
     let position = null;
     do {
-        let rawInput = await askQuestion("Place your mark at: ");
+        let rawInput = await askQuestion(language.PLACE_MARK);
         position = rawInput.split(" ");
     } while (isValidPositionOnBoard(position) == false)
 
@@ -224,11 +230,11 @@ function isValidPositionOnBoard(position) {
 }
 
 function showHUD() {
-    let playerDescription = "one";
+    let playerDescription = language.PLAYER_1;
     if (PLAYER_2 == currentPlayer) {
-        playerDescription = "two";
+        playerDescription = language.PLAYER_2;
     }
-    print("Player " + playerDescription + " it is your turn");
+    print(language.PLAYER + playerDescription + language.YOUR_TURN);
 }
 
 function showGameBoardWithCurrentState() {
