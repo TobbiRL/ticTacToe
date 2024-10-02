@@ -120,8 +120,6 @@ async function chooseYourLanguage() {
     }
 }
 
-
-
 async function playGame() {
     // Play game..
     let outcome;
@@ -160,7 +158,6 @@ function showGameSummary(outcome) {
 function changeCurrentPlayer() {
     currentPlayer *= -1;
 }
-
 
 function evaluateGameState() {
     let sum = 0;
@@ -224,8 +221,6 @@ function evaluateGameState() {
      
 } 
 
-
-
 function updateGameBoardState(move) {
     const ROW_ID = 0;
     const COLUMN_ID = 1;
@@ -237,9 +232,14 @@ async function getGameMoveFromtCurrentPlayer() {
     do {
         let rawInput = await askQuestion(language.PLACE_MARK);
         position = rawInput.split(CHAR.EMPTY_SPACE);
+        position[0] = parseInt(position[0]);
+        position[1] = parseInt(position[1]);
+        position[0] = position[0] - 1
+        position[1] = position[1] - 1
     } while (isValidPositionOnBoard(position) == false)
 
     return position
+    
 }
 
 function isValidPositionOnBoard(position) {
