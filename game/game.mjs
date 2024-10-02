@@ -3,6 +3,7 @@ import { debug, DEBUG_LEVELS } from "./debug.mjs";
 import { ANSI } from "./ansi.mjs";
 import DICTIONARY from "./language.mjs";
 import showSplashScreen from "./splash.mjs";
+import CHAR from "./magicStringRemover.mjs";
 
 const GAME_BOARD_SIZE = 3;
 const PLAYER_1 = 1;
