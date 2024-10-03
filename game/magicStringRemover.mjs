@@ -3,7 +3,7 @@ const CHAR = {
     EMPTY_SPACE: " ",
     O: "O ",
     X: "X ",
-    LINE: "_ ",
+    LINE: "_ ",         
 
 };
 
