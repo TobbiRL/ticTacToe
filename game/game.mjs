@@ -274,10 +274,10 @@ function isValidPositionOnBoard(position) {
         // Not Numbers
         return false;
     } 
-    else if (position[0] >= GAME_BOARD_SIZE){
+    else if (position[0] < 0 || position[0] >= GAME_BOARD_SIZE) {
         return false
     } 
-    else if (position[1] >= GAME_BOARD_SIZE) {
+    else if (position[1] < 0 || position[1] >= GAME_BOARD_SIZE) {
         // Not on board
         return false;
     
