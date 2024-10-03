@@ -20,6 +20,10 @@ const LANGUAGE_CHOICES = {
     NORWEGIAN: 2,
 };
 
+const GAMEMODE_CHOICE = {
+    PVP: 1,
+    PVC: 2,
+}
 
 const NO_CHOICE = -1;
 
@@ -62,7 +66,8 @@ async function runGame() {
 
     while (isPlaying) { // Do the following until the player dos not want to play anymore. 
         initializeGame(); // Reset everything related to playing the game
-        isPlaying = await playGame(); // run the actual game 
+        isPlaying = await gamemodeSelection(); 
+        
     }
 }
 
@@ -120,8 +125,43 @@ async function chooseYourLanguage() {
     }
 }
 
-async function playGame() {
-    // Play game..
+async function chooseGamemode() {
+
+    let chosenGamemode = -1
+    let validChoice = false;
+
+    while (!validChoice) {
+       
+        clearScreen();
+        print("What gamemode do you want to play?");
+        print("1. PvP");
+        print("2. PvC");
+
+        // Wait for the choice.
+        chosenGamemode = await askQuestion(CHAR.EMPTY);
+
+        // Check to see if the choice is valid.
+        if ([GAMEMODE_CHOICE.PVP, GAMEMODE_CHOICE.PVC].includes(Number(chosenGamemode))) {
+            validChoice = true;
+        }
+    }
+   
+    return chosenGamemode
+    }
+
+async function gamemodeSelection() {
+    let gameMode;
+    let gamemodeSelect = await chooseGamemode();
+    if (gamemodeSelect == GAMEMODE_CHOICE.PVP) {
+        gameMode = playGamePvP();  
+    } else if (gamemodeSelect == GAMEMODE_CHOICE.PVC) {
+        gameMode = playGamePvC();
+    }
+    return gameMode;
+}
+
+async function playGamePvP() {
+    
     let outcome;
     do {
         clearScreen();
@@ -137,6 +177,38 @@ async function playGame() {
 
     return await askWantToPlayAgain();
 }
+
+async function playGamePvC() {
+
+    let outcome;
+    do {
+      clearScreen();
+      showGameBoardWithCurrentState();
+      showHUD();
+      let move;
+      if (currentPlayer == PLAYER_1) {
+        move = await getGameMoveFromCurrentPlayer();
+      } else if (currentPlayer == PLAYER_2) {
+        move = computerMove();
+        while (isValidPositionOnBoard(move) == false) {
+          move = computerMove();
+        }
+    }
+      updateGameBoardState(move);
+      outcome = evaluateGameState(); 
+      changeCurrentPlayer();
+    } while (outcome == 0)
+
+    showGameSummary(outcome);
+
+    return await askWantToPlayAgain();
+  }
+  function computerMove() {
+    let row = Math.floor(Math.random() * GAME_BOARD_SIZE);
+    let col = Math.floor(Math.random() * GAME_BOARD_SIZE);
+    let move = [row, col];
+    return move;
+  }
 
 async function askWantToPlayAgain() {
     let answer = await askQuestion(language.PLAY_AGAIN_QUESTION);
