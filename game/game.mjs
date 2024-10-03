@@ -264,7 +264,10 @@ function isValidPositionOnBoard(position) {
         return false;
     }
 
-    else if (position[0] * 1 != position[0] && position[1] * 1 != position[1]) {
+    else if (position[0] * 1 != position[0]){
+        return false
+
+    } else if (position[1] * 1 != position[1]){
         // Not Numbers
         return false;
     } 
