@@ -354,8 +354,7 @@ function isValidPositionOnBoard(position) {
         return false;
     
     }
-    else if (Number.parseInt(position[0]) != position[0] && Number.parseInt(position[1]) != position[1]) {
-        // Position taken.
+    else if (gameboard[position[0]][position[1]] !== 0) {
         return false;
     }
 }
