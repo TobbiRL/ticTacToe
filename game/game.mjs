@@ -298,9 +298,9 @@ function showGameBoardWithCurrentState() {
                 rowOutput += CHAR.LINE;
             }
             else if (cell > 0) {
-                rowOutput += CHAR.X;
+                rowOutput += ANSI.COLOR.GREEN + CHAR.X + ANSI.RESET;
             } else {
-                rowOutput += CHAR.O;
+                rowOutput += ANSI.COLOR.RED + CHAR.O + ANSI.RESET;
             }
         }
 
