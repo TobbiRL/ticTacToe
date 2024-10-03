@@ -263,22 +263,19 @@ function isValidPositionOnBoard(position) {
         // We where not given two numbers or more.
         return false;
     }
-    
-    let isValidInput = true;
-    if (position[0] * 1 != position[0] && position[1] * 1 != position[1]) {
+
+    else if (position[0] * 1 != position[0] && position[1] * 1 != position[1]) {
         // Not Numbers
-        isValidInput = false;
-    } else if (position[0] > GAME_BOARD_SIZE && position[1] > GAME_BOARD_SIZE) {
+        return false;
+    } 
+    else if (position[0] > GAME_BOARD_SIZE && position[1] > GAME_BOARD_SIZE) {
         // Not on board
-        isValidInput = false;
+        return false;
     }
     else if (Number.parseInt(position[0]) != position[0] && Number.parseInt(position[1]) != position[1]) {
         // Position taken.
-        isValidInput = false;
+        return false;
     }
-
-
-    return isValidInput;
 }
 
 function showHUD() {
