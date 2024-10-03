@@ -85,7 +85,7 @@ async function showMenu() {
         print(language.EXIT_GAME);
 
         // Wait for the choice.
-        choice = await askQuestion("");
+        choice = await askQuestion(CHAR.EMPTY);
 
         // Check to see if the choice is valid.
      if ([MENU_CHOICES.MENU_CHOICE_START_GAME, MENU_CHOICES.MENU_CHOICE_SHOW_SETTINGS, MENU_CHOICES.MENU_CHOICE_EXIT_GAME].includes(Number(choice))) {
@@ -133,9 +133,9 @@ async function chooseGamemode() {
     while (!validChoice) {
        
         clearScreen();
-        print("What gamemode do you want to play?");
-        print("1. PvP");
-        print("2. PvC");
+        print(ANSI.COLOR.YELLOW + language.GAME_MODE_PREFERED + ANSI.RESET);
+        print(language.GAME_MODE_PVP);
+        print(language.GAME_MODE_PVC);
 
         // Wait for the choice.
         chosenGamemode = await askQuestion(CHAR.EMPTY);
