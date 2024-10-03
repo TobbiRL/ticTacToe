@@ -30,7 +30,7 @@ const DICTIONARY = {
         PLAY_GAME: "1. Start spill" ,
         GAME_MODE_PREFERED: "Hvilken spillmodus vil du spille?",
         GAME_MODE_PVP: "1. PVP (Spiller mot Spiller)",
-        GAME_MODE_PVC: "2. PVC (Spilelr mot Datamaskin)",
+        GAME_MODE_PVC: "2. PVC (Spiller mot Datamaskin)",
         SETTINGS: "2. Instillinger",
         PREFERED_LANGUAGE: "Velg språk",
         ENGLISH: "1. Engelsk",
