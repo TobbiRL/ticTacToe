@@ -239,7 +239,7 @@ function evaluateGameState() {
 function updateGameBoardState(move) {
     const ROW_ID = 0;
     const COLUMN_ID = 1;
-    if (move[ROW_ID] >= 0 && move[ROW_ID]<GAME_BOARD_SIZE && move[COLUMN_ID]>=0 && move[COLUMN_ID]<GAME_BOARD_SIZE){
+    if (move[ROW_ID] >= 0 && move[ROW_ID] < GAME_BOARD_SIZE && move[COLUMN_ID] >= 0 && move[COLUMN_ID] < GAME_BOARD_SIZE) {
         gameboard[move[ROW_ID]][move[COLUMN_ID]] = currentPlayer; 
     }
     
@@ -274,9 +274,13 @@ function isValidPositionOnBoard(position) {
         // Not Numbers
         return false;
     } 
-    else if (position[0] > GAME_BOARD_SIZE && position[1] > GAME_BOARD_SIZE) {
+    else if (position[0] >= GAME_BOARD_SIZE){
+        return false
+    } 
+    else if (position[1] >= GAME_BOARD_SIZE) {
         // Not on board
         return false;
+    
     }
     else if (Number.parseInt(position[0]) != position[0] && Number.parseInt(position[1]) != position[1]) {
         // Position taken.
