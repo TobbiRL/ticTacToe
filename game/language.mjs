@@ -15,6 +15,7 @@ const DICTIONARY = {
         PLAYER: "Player ",
         YOUR_TURN: " it is your turn",
         WINNER: "Winner is player ",
+        DRAW: "It's a draw!",
         GAME_OVER: "GAME OVER",
         CONFIRM: "y",
     },
@@ -33,6 +34,7 @@ const DICTIONARY = {
         PLAYER: "Spiller ",
         YOUR_TURN: " det er din tur",
         WINNER: "Vinneren er spiller ",
+        DRAW: "Det ble uavgjort!",
         GAME_OVER: "SLUTT",
         CONFIRM: "j",
     }

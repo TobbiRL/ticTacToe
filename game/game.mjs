@@ -150,7 +150,7 @@ async function askWantToPlayAgain() {
 function showGameSummary(outcome) {
     clearScreen();
     if (outcome == 0.5) {
-        print("It's a draw")
+        print(language.DRAW)
     } else {
         let winningPlayer = (outcome > 0) ? 1 : 2;
         print(language.WINNER + winningPlayer); 
