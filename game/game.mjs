@@ -368,7 +368,7 @@ function showHUD() {
 }
 
 function showGameBoardWithCurrentState() {
-print("   1 2 3");
+print(CHAR.NUM123);
     let i = 0
     for (let currentRow = 0; currentRow < GAME_BOARD_SIZE; currentRow++, i++) {
         let rowOutput = (i + 1) + CHAR.EMPTY_SPACE + CHAR.EMPTY_SPACE + CHAR.EMPTY;
