@@ -375,16 +375,23 @@ print(CHAR.NUM123);
         for (let currentCol = 0; currentCol < GAME_BOARD_SIZE; currentCol++) {
             let cell = gameboard[currentRow][currentCol];
             if (cell == 0) {
-                rowOutput += CHAR.LINE;
+                rowOutput += ANSI.COLOR.YELLOW + CHAR.LINE + ANSI.RESET;
             }
             else if (cell > 0) {
                 rowOutput += ANSI.COLOR.GREEN + CHAR.X + ANSI.RESET;
             } else {
                 rowOutput += ANSI.COLOR.RED + CHAR.O + ANSI.RESET;
             }
+            if (currentCol < GAME_BOARD_SIZE - 1){
+                rowOutput += CHAR.COL_SEPERATE;
+            }
         }
 
         print(rowOutput);
+
+        if (currentRow < GAME_BOARD_SIZE - 1) {
+            print(CHAR.ROW_DIVIDE)
+        }
     }
 }
 
