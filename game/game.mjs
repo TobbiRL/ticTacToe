@@ -105,7 +105,7 @@ async function chooseYourLanguage() {
     while (!validChoice) {
        
         clearScreen();
-        print(language.PREFERED_LANGUAGE);
+        print(ANSI.COLOR.YELLOW + language.PREFERED_LANGUAGE + ANSI.RESET);
         print(language.ENGLISH);
         print(language.NORWEGIAN);
 
@@ -189,9 +189,9 @@ async function playGamePvC() {
       if (currentPlayer == PLAYER_1) {
         move = await getGameMoveFromCurrentPlayer();
       } else if (currentPlayer == PLAYER_2) {
-        move = computerMove();
+        move = randomComputerMove();
         while (isValidPositionOnBoard(move) == false) {
-          move = computerMove();
+          move = randomComputerMove();
         }
     }
       updateGameBoardState(move);
@@ -203,7 +203,7 @@ async function playGamePvC() {
 
     return await askWantToPlayAgain();
   }
-  function computerMove() {
+function randomComputerMove() {
     let row = Math.floor(Math.random() * GAME_BOARD_SIZE);
     let col = Math.floor(Math.random() * GAME_BOARD_SIZE);
     let move = [row, col];
